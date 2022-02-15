@@ -12,14 +12,14 @@ POST {{baseUrl}}/films
 Content-Type: application/json
 
 {
-  "title" : "Venom: Let There Be Carnage",
+  "title" : "Spider man",
   "duration" : 97,
   "budget" : 110,
   "link" : "https://en.wikipedia.org/wiki/Venom:_Let_There_Be_Carnage"
 }
 
 ### Delete One film
-DELETE {{baseUrl}}/films/3
+DELETE {{baseUrl}}/films/2
 
 ### update one film
 
