@@ -1,10 +1,7 @@
 package be.vinci.services;
 
-import be.vinci.Json;
+import be.vinci.services.utils.Json;
 import be.vinci.domain.Film;
-import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
-import jakarta.ws.rs.core.Response;
 import org.apache.commons.text.StringEscapeUtils;
 
 import java.util.List;
@@ -12,7 +9,7 @@ import java.util.stream.Collectors;
 
 public class FilmDataService {
     private static final String COLLECTION_NAME = "films";
-    private static Json<Film> jsonDB = new Json<>();
+    private static Json<Film> jsonDB = new Json<>(Film.class);
 
 
     public List<Film> getAll(int minimumDuration) {
