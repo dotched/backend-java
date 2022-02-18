@@ -1,57 +1,25 @@
 package be.vinci.domain;
 
+public interface User {
+    String getLogin();
 
-import org.mindrot.jbcrypt.BCrypt;
+    void setLogin(String login);
 
-public class User {
+    int getId();
 
-    private int id;
+    void setId(int id);
 
-    private String login;
+    String getPassword();
 
-    private String password;
+    void setPassword(String password);
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     /*
-    public boolean checkPassword(String password) {
-        return this.password.equals(password);
-    }
-    $:
-     */
-    public boolean checkPassword(String password) {
-        return BCrypt.checkpw(password, this.password);
-    }
+        public boolean checkPassword(String password) {
+            return this.password.equals(password);
+        }
+        $:
+         */
+    boolean checkPassword(String password);
 
-    public String hashPassword(String password) {
-        return BCrypt.hashpw(password, BCrypt.gensalt());
-    }
-
-
-    @Override
-    public String toString() {
-        return "{id:" + id + ", login:" + login + ", password:" + password + "}";
-    }
-
+    String hashPassword(String password);
 }
