@@ -4,16 +4,16 @@ import be.vinci.api.filters.Authorize;
 import be.vinci.domain.Film;
 import be.vinci.domain.User;
 import be.vinci.services.FilmDataService;
+import be.vinci.services.FilmDataServiceImpl;
+import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.apache.commons.text.StringEscapeUtils;
 import org.glassfish.jersey.server.ContainerRequest;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Root resource (exposed at "myresource" path)
@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 @Singleton
 @Path("films")
 public class FilmResource {
-
-    private FilmDataService myFilmDataService = new FilmDataService();
+    @Inject
+    private FilmDataService myFilmDataService;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
