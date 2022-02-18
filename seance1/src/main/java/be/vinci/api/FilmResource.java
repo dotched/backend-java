@@ -23,6 +23,7 @@ import java.util.List;
 public class FilmResource {
     @Inject
     private FilmDataService myFilmDataService;
+    // PUSH
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
