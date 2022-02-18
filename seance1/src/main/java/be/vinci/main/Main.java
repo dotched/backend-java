@@ -2,6 +2,7 @@ package be.vinci.main;
 
 import be.vinci.utils.ApplicationBinder;
 import be.vinci.utils.Config;
+import be.vinci.utils.WebExceptionMapper;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.jackson.JacksonFeature;
@@ -30,7 +31,10 @@ public class Main {
     public static HttpServer startServer() {
         // create a resource config that scans for JAX-RS resources and providers
         // in be.vinci package
-        final ResourceConfig rc = new ResourceConfig().packages("be.vinci.api").register(JacksonFeature.class).register(ApplicationBinder.class);
+        final ResourceConfig rc = new ResourceConfig().packages("be.vinci.api")
+                .register(JacksonFeature.class)
+                .register(ApplicationBinder.class)
+                .register(WebExceptionMapper.class);
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI

@@ -39,8 +39,7 @@ public class AuthorizationRequestFilter implements ContainerRequestFilter {
             try {
                 decodedToken = this.jwtVerifier.verify(token);
             } catch (Exception e) {
-                throw new WebApplicationException(Response.status(Status.UNAUTHORIZED)
-                        .entity("Malformed token : " + e.getMessage()).type("text/plain").build());
+                throw new TokenDecodingException(e);
             }
             User authenticatedUser = myUserDataService.getOne(decodedToken.getClaim("user").asInt());
             if (authenticatedUser == null) {

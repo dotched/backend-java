@@ -1,5 +1,6 @@
 package be.vinci.api;
 
+import be.vinci.api.filters.TokenDecodingException;
 import be.vinci.services.UserDataService;
 import be.vinci.services.UserDataServiceImpl;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -23,8 +24,7 @@ public class AuthsResource {
     public ObjectNode login(JsonNode json) {
         // Get and check credentials
         if (!json.hasNonNull("login") || !json.hasNonNull("password")) {
-            throw new WebApplicationException(Response.status(Response.Status.BAD_REQUEST)
-                    .entity("login or password required").type("text/plain").build());
+            throw new TokenDecodingException("login or password required");
         }
         String login = json.get("login").asText();
         String password = json.get("password").asText();
